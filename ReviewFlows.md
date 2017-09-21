@@ -24,6 +24,16 @@ A good commit should answer the following questions:
 * How does this commit address the issue?
 * What side effects does this change have?
 
+In addition, here are the most important rules for succinct log messages:
+
+* Separate subject from body with a blank line
+* Limit the subject line to 50 characters
+* Capitalize the subject line
+* Do not end the subject line with a period
+* Use the imperative mood in the subject line
+* Wrap the body at 72 characters
+* Use the body to explain what and why vs. how
+
 Our proposed commit format is as follows:
 
     Summary line with short description of change
