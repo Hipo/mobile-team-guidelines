@@ -5,20 +5,16 @@ This chapter outlines best practices to use for developing in iOS and Android.
 ## iOS
 
 ### Architectures
-#### - MVVM
 
-### Naming
-#### - Functions
-#### - Properties 
-#### - Constants
+### Development Advices
 
-### Fonts / Colors Implementation
+### Common libraries
+#### - Layout
+#### - Networking
+#### - Image Download
+#### - Mapping
 
-### Staging - Production Targets 
-
-### Provisioning
-
-### Development advices
+### Issue tracking, development flow
 #### - Including test scenarios in tickets
 
 ## Android
