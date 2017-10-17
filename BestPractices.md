@@ -47,3 +47,9 @@ This chapter outlines best practices to use for developing in iOS and Android.
 #### - Including test scenarios in tickets
 
 ## Android
+
+### Common libraries
+
+#### - Networking - Parsing
+#### - Image Download
+#### - Dependecy Injection
