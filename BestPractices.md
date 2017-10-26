@@ -7,6 +7,9 @@ This chapter outlines best practices to use for developing in iOS and Android.
 ### Architectures
 
 ### Development Advices
+[Authenticated User Implementation](AuthenticatedUserImplementation.md)
+
+[Adding states to controllers, views](AddingStatesControllersViews.md)
 
 ### Common libraries
 #### - Layout
