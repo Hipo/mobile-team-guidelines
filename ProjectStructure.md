@@ -55,7 +55,7 @@ Project structure is the first thing we should pay attention when starting a pro
 
   The files created under these general concepts should be grouped by feature-set such as *Common, Feed, Profile, Publish* etc. , as well. 
 
-  Under feature levels, you do not have such grouping instructions, but it is encouraged to create new groups for every sensible concept. This will make project structure more readable.
+  Under feature levels, you do not have such grouping instructions, but it is encouraged to create new groups for every sensible concept. Additionally, you should sort all your groups and files by alphabetical order. This will make project structure more readable.
 
   Besides this grouping strategy, there are a few key points you should bear in mind. First. you should maintain a logical order by putting source files in groups. For example, if you create a view class for a view controller positioned under *Classes>ViewControllers>Profile*, the file should be put under *Classes>Views>Profile*. This way, all groups will be in sync by the same hierarchical order. And if you have a class which is used for multiple feature-set, then these files should be moved to 'Common' groups and their names should be changed if needed. Moreover, the group structure within both *XCode* and *filesystem* MUST be identical. It is a big plus for a well-organized project.
 
