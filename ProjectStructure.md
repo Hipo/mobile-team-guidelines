@@ -2,10 +2,87 @@
 
 This chapter outlines the directory structures and various other basic requirements for iOS & Android projects.
 
+
+
 ## iOS
+
+Project structure is the first thing we should pay attention when starting a project. Generally, there are a few rules which every iOS team member should follow.
+
+
+
+- **GIT** 
+
+  All projects in Hipo will be hosted in 'Github'. So, first thing we should do is to put a standard *.gitignore* file into the project. We does not push installed pods (CocoaPods) to git, therefore; do NOT forget to add the restriction into gitignore since we had experienced before, some pods may have too much size to be hosted in Github. Also, it would be nice to add a *README* file with general info about the project and how to setup development environment.
+
+  ​
+
+- **COCOAPODS**
+
+  It is possible for a project not to have *CocoaPods* integrated. However, almost every project needs to benefit open-source projects somewhere in the dev process. For that, it is highly recommended to start a project with *CocoaPods* integrated.
+
+  If there is an open-source library, you want to use in the project, you must add it as a pod unless there is a specific reason not to do. It would be nice to write it down to *README*. Also, if you want to add a pod, but it  does not meet all your requirements and you need to change the code, first you fork the project into Hipoe repo, make your changes, then add ours into *podfile*. 
+
+​      Sample **Podfile** 
+
+![Screen Shot 2017-10-27 at 15.40.07](/Users/karasuluoglu/Desktop/Screen Shot 2017-10-27 at 15.40.07.png)
+
+
+
+- **GROUPING FILES**
+
+  This is the one thing every iOS developer in Hipo must put effort. There are several groups which needs to be included in almost every project.
+
+  1. Classes
+     - API
+     - Application
+     - Extensions
+     - Managers
+     - Models
+     - Protocols
+     - ViewControllers
+     - Views
+     - Utility
+  2. Resources
+     - Assets
+     - Fonts
+     - LaunchScreen
+     - Localization
+  3. Support
+     - Info.plist
+     - Dev-info.plist
+
+  New concepts such as *Animators, Datasources, Delegates, Layouts, ViewModels* etc. should also be grouped with the same systematic.
+
+  The files created under these general concepts should be grouped by feature-set such as *Common, Feed, Profile, Publish* etc. , as well. 
+
+  Under feature levels, you do not have such grouping instructions, but it is encouraged to create new groups for every sensible concept. This will make project structure more readable.
+
+  Besides this grouping strategy, there are a few key points you should bear in mind. First. you should maintain a logical order by putting source files in groups. For example, if you create a view class for a view controller positioned under *Classes>ViewControllers>Profile*, the file should be put under *Classes>Views>Profile*. This way, all groups will be in sync by the same hierarchical order. Moreover, the group structure within both *XCode* and *filesystem* MUST be identical.
+
+  ​
+
+- **TARGET MANAGEMENT**
+
+  This section has not been written yet.
+
+  ​
+
+
+- **STYLEGUIDE**
+
+  This section has not been written yet.
+
+  - **Layout**
+  - **Color**
+  - **Font**
+
+
+
+- **FILE STRUCTURE**
+
+  This section has not been written yet.
+
 
 
 
 ## Android
-
-
