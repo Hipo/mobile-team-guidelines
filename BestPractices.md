@@ -14,6 +14,8 @@ This chapter outlines best practices to use for developing in iOS and Android.
 
 [Adding new responsibilies to existing controllers](AddingStatesToViews.md)
 
+[Mehtod signatures in swift](SwiftMethodSignatures.md)
+
 ### Common libraries
 * **Layout**
 	* [SnapKit](https://github.com/SnapKit/SnapKit)
