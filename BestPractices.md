@@ -12,6 +12,7 @@ This chapter outlines best practices to use for developing in iOS and Android.
 
 [Adding states to views](AddingResponsibilitiesToControllers.md)
 
+[Adding new responsibilies to existing controllers](AddingStatesToViews.md)
 
 ### Common libraries
 * **Layout**
