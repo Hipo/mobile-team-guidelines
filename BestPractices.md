@@ -10,31 +10,25 @@ This chapter outlines best practices to use for developing in iOS and Android.
 
 ### Common libraries
 * **Layout**
-	* [SnapKit](https://github.com/SnapKit/SnapKit)
-
+  * [SnapKit](https://github.com/SnapKit/SnapKit)
 * **Networking**
-	* [Alamofire](https://github.com/Alamofire/Alamofire)
-
+  * [Alamofire](https://github.com/Alamofire/Alamofire)
 * **Image Download**
-	* [Kingfisher](https://github.com/onevcat/Kingfisher)
-
+  * [Kingfisher](https://github.com/onevcat/Kingfisher)
 * **Mapping**
-	* [Mapper](https://github.com/lyft/mapper)
-	
+  * [Mapper](https://github.com/lyft/mapper)
 * **Core Data**
-	* [MagicalRecord](https://github.com/magicalpanda/MagicalRecord)
-	
+  * [MagicalRecord](https://github.com/magicalpanda/MagicalRecord)
 * **Crash Reporting**
-	* [Fabric](https://cocoapods.org/pods/Fabric)
-	 
+  * [Fabric](https://cocoapods.org/pods/Fabric)
 * **Keychain**
-	* [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
-
-* **Others**
-	* [IGListKit](https://github.com/Instagram/IGListKit)
-	* [ActiveLabel](https://github.com/optonaut/ActiveLabel.swift)
-	* [SwiftDate](https://github.com/malcommac/SwiftDate)
-	
+  * [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
+* **Utility**
+  * [IGListKit](https://github.com/Instagram/IGListKit)
+  * [ActiveLabel](https://github.com/optonaut/ActiveLabel.swift)
+  * [SwiftDate](https://github.com/malcommac/SwiftDate)
+  * [AnyFormatter](https://github.com/luximetr/AnyFormatKit)
+  * [PhoneNumberKit](https://github.com/marmelroy/PhoneNumberKit)
 
 
 ### Issue tracking, development flow
