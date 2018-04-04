@@ -33,21 +33,38 @@ This chapter outlines best practices to use for developing in iOS and Android.
 
 ### Issue tracking, development flow
 
-* **Issue Tracking**
-    * We are currently using [Codebase](https://hipo.codebasehq.com/) for issue tracking. At the home page, you can see list of projects that you enrolled. When you join the team, you will be able to see tickets that you should follow. We have milestones for each sprint. Generally it is a weekly titled. Issues are under these milestones with having priority, status and category labels. Every team member has a section on spesific project.
-    * Before weekly huddles, tickets are set by priority via Project manager. So when you start working, you need to check-in according to high proirty tickets. On weekly huddles, these priority might change.
-    * You can create tickets for example when you faced with a bug on project. Reproduction scenarios will absolutely help to us for resolving the issue. So please write scenarios step by step.
-* **Pre-development**
-    * Since we are using git version control ([Github client](https://github.com)), the codes that we write will be merged by senior developer of that project after code review. So when you are contributing, you need to branch out project from master and make commits to that branch.
-    * That branch should have ticket numbers to keep track it easily on Codebase. Also, you can combine little tickets in one seperate branch.
-    * For example, branch should look like _**5890-multi-batch-bublish-feature**_ it is easy to read and understandable that what you want to impelement.
-    * You can change the status according your work, you can label it as **In Progress**, **Ready for Testing**, **Invalid**, etc. on Codebase
-    * Sometimes we may have critical bugs, crashes etc and we need to fix these kind of issues. Our QA team will provide a reproduction scenario of the issue.
-* **Post-development**
-    * When you are done with branch, you need to create Pull Request for merging. Most likely, you will be provided comments, change requests for your Pull Request and if it is ready to go, it will be merged to codebase. You can comment the Pull Request link to the ticket.
-    * Sometimes you have conflicts with your branch, before you creating pull request you need to resolve git conflicts.
-    * Please include UI related files such as screenshots, animation videos etc. to your Pull Request, If you are deailing with developing UI features.
-    * You can provide test scenarios in tickets that you tried for the issue.
+* **Ticket Managment**
+
+	We are currently using [Codebase](https://hipo.codebasehq.com/) for issue tracking. At the home page, you can see list of projects that you enrolled. When you join the team, you will be able to see tickets that you should follow.
+	* Projects have weekly sprints that displays tickets for every project member.
+	* Tickets are displayed with their priority, status and category labels.
+	* Ticket priorities are set by the Project Manager for each milestone. 
+	* Milestone tickets should be handled according to their priority.
+	* When a developer start to work on a ticket, it should be updated to "In Progress" status.
+	* When the developer completes the task, ticket should be directed to Senior Developer of the project for PR Review progress with "Ready for Testing" status.
+	* If there is an edge case that should be tested, the developer should note that case in the ticket. 
+	* After the PR Review, If Senior Developer of the project requests changes, status of ticket to should be changed "Reopen" and directed to the developer. If  PR is approved, ticket should be directed to QA.
+	* Every team member should check-in daily with their assigned tickets that they will work on via ReportZ.
+
+* **Ticket Branching**
+	* A ticket that contains many features can be separated to multiple tickets.
+	* A ticket can be branched to separate tickets when you complete several tasks in a ticket, but there are other things you didn't tackle. 
+	
+* **Branch Creation**
+	* In general, a branch should contain implementation of a ticket.
+	* Tickets that have small bug implementations can be combined in a single branch.
+	* Branches should be created from master. If the developer is blocked by PR review process, branch can be created from the branch you need.
+	* Branches should be named as _**ticketnumber-ticket-title**_. For example, a branch should look like _**5890-multi-batch-bublish-feature**_.	
+* **How To Open a Pull Request**
+	* Ticket link should be added to PR description.
+	* Developer should provide screenshots if there is an UI change.
+	* If there is an animation or multiple views that are implemented in that branch, GIF or video should be added.
+	* Senior developer of the project should be assigned to Pull Request review.
+	* Conflicts should be resolved before you assign the senior developer.
+		
+* **How To Review a Pull Request**
+	
+
 
 ## Android
 
