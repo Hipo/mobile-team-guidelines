@@ -16,7 +16,7 @@ class BaseVideoPostViewController: BaseViewController {
         
     // MARK: - Initialization
     
-    init(with uploadManager: UploadManager) {
+    init(uploadManager: UploadManager) {
         self.uploadManager = uploadManager
         
         super.init()
@@ -50,10 +50,10 @@ class BaseVideoPostViewController: BaseViewController {
 class VideoURLPostViewController: BaseVideoPostViewController {
     private let videoURL: URL
 
-    init(withVideoURL url: URL, and uploadManager: VideoUploadManager) {
+    init(url: URL, uploadManager: VideoUploadManager) {
         self.videoURL = url
 
-        super.init(with: uploadManager)
+        super.init(uploadManager: uploadManager)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,11 +67,11 @@ class VideoAssetPostViewController: BaseVideoPostViewController {
 	private lazy var progressView = UIProgressView()
 	private let assetFetcher: VideoAssetFetcher
 
-	init(with asset: PHAsset, and uploadManager: VideoUploadManager) {
+	init(asset: PHAsset, uploadManager: VideoUploadManager) {
 		self.asset = asset
 		self.assetFetcher = VideoAssetFetcher(with: asset)
         
-		super.init(with: uploadManager)        
+		super.init(uploadManager: uploadManager)        
 	}
     
 	required init?(coder aDecoder: NSCoder) {
