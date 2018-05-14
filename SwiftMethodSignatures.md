@@ -1,16 +1,21 @@
 In swift we can declare methods in different ways, like;
 
 ```swift
-fileprivate func configureCommentCell(_ cell: PostCommentCell, atIndexPath indexPath: IndexPath) {
+func configureCommentCell(_ cell: PostCommentCell, atIndexPath indexPath: IndexPath) {
 	...
 }
 ```                  
 
 ```swift
-fileprivate func configure(_ cell: PostCommentCell, at indexPath: IndexPath) {
+func configure(_ cell: PostCommentCell, at indexPath: IndexPath) {
 	...
 }
 ```                  
 
-For now there is no strict rule to pick one of two. However, for consistency we recommend to use the approach which is used in an existing project.  
+For now there is no strict rule to pick one of two. However, for consistency we recommend to use just one approach for any project.  
 
+Also an invalid signature could be like this;
+
+```swift
+func configureComment(cell: PostCommentCell, atIndexPath: IndexPath)
+```
