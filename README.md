@@ -10,3 +10,4 @@ This repository is a collection of various guideline documents that outline how 
 - [Project Huddle Etiquette](ProjectHuddleEtiquette.md)
 - [Weekly Huddle Etiquette](WeeklyHuddleEtiquette.md)
 - [Jenkins Setup Guide](JenkinsSetupGuide.md)
+- [Swift Style Guide](SwiftStyleGuide.md) 
