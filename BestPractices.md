@@ -63,6 +63,18 @@ This chapter outlines best practices to use for developing in iOS and Android.
 	* Conflicts should be resolved before you assign the senior developer.
 		
 * **How To Review a Pull Request**
+	Reviewing pull request is not easy to do. Reviewer should consider codes in multiple perspectives. 
+	* Your responsibility is make sure that code is correct and high quality before gets merged.
+	* Reviewer should understand the approach is being taken and what the pull request is trying to achieve.
+	* The code should have clear variable names and functions to reviewers understand what's going on and logics should be separated for each logic.
+	* Everyone make mistakes, when you review the code take consider best practices.
+	* Commented out codes should not included in PR.
+	* Since we are using linters for each project, it warns developer to fix warnings / errors before pushing changes, somehow developer may miss it. You can start checking warnings and errors before review process. These warnings should be fixed before merging.
+	* Codes should be defensive instead of throwing errors and causing crashes.
+	* Git clients have very productive diff views to understand what changes in PR. When you start to review, you will have to review codes line by line. 
+	* If something wrong or problematic in any piece of code, it should be requested for changes.
+	* After finalizing review, if there is something broken or weird, you can comment it out on PR.
+
 	
 
 
