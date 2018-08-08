@@ -24,7 +24,38 @@ Project structure is the first thing we should pay attention when starting a pro
 
 ​      Sample **Podfile** 
 
-![Screen Shot 2017-10-27 at 15.40.07](/Users/karasuluoglu/Desktop/Screen Shot 2017-10-27 at 15.40.07.png)
+```
+platform :ios, '9.0'
+
+use_frameworks!
+
+def main_pods
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'TwitterKit', '3.2.2'
+  pod 'Digits', '3.0.2'
+  pod 'GoogleMaps', '2.5.0'
+  pod 'GooglePlaces', '2.5.0'
+  pod 'MMNumberKeyboard'
+  pod 'Google/SignIn'
+  pod 'SAMKeychain'
+  pod 'Intercom'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'ModelMapper'
+end
+
+target 'Sample' do
+  # Pods for Sample
+  main_pods
+end
+
+target 'Sample-Preprod' do
+  # Pods for Sample-Preprod
+  main_pods
+end
+```
 
 
 
