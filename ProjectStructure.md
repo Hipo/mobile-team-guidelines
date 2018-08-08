@@ -14,7 +14,36 @@ Project structure is the first thing we should pay attention when starting a pro
 
   All projects in Hipo will be hosted in 'Github'. So, first thing we should do is to put a standard *.gitignore* file into the project. We do not push installed pods (CocoaPods) to git, therefore; do NOT forget to add the restriction into gitignore because, before, we had experienced that some pods might have too much size to be hosted in Github. Also, it would be nice to add a *README* file with general info about the project and how to setup development environment.
 
-  ​
+      Sample **.gitignore** 
+
+```
+# OS X temporary files that should never be committed
+.DS_Store
+.Trashes
+*.swp
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+*.moved-aside
+compile_commands.json
+
+# CocoaPods
+build/SampleProject/Pods/
+
+## Build generated
+build/SampleProject/DerivedData
+```
+
 
 - **COCOAPODS**
 
