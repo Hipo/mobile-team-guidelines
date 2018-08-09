@@ -11,3 +11,4 @@ This repository is a collection of various guideline documents that outline how 
 - [Weekly Huddle Etiquette](WeeklyHuddleEtiquette.md)
 - [Jenkins Setup Guide](JenkinsSetupGuide.md)
 - [Swift Style Guide](SwiftStyleGuide.md) 
+- [Linter Rules](LinterRules.md) 
