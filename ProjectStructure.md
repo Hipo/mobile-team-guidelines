@@ -18,11 +18,20 @@ Project structure is the first thing we should pay attention when starting a pro
 
 ```
 # OS X temporary files that should never be committed
+
 .DS_Store
 .Trashes
 *.swp
 
 # Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -34,14 +43,25 @@ Project structure is the first thing we should pay attention when starting a pro
 *.xcworkspace
 !default.xcworkspace
 xcuserdata
-*.moved-aside
 compile_commands.json
 
-# CocoaPods
-build/SampleProject/Pods/
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
 
-## Build generated
-build/SampleProject/DerivedData
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# CocoaPods
+Pods/
 ```
 
 
@@ -57,32 +77,61 @@ build/SampleProject/DerivedData
 platform :ios, '9.0'
 
 use_frameworks!
+inhibit_all_warnings!
 
 def main_pods
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'TwitterKit', '3.2.2'
-  pod 'Digits', '3.0.2'
-  pod 'GoogleMaps', '2.5.0'
-  pod 'GooglePlaces', '2.5.0'
-  pod 'MMNumberKeyboard'
-  pod 'Google/SignIn'
-  pod 'SAMKeychain'
-  pod 'Intercom'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'ModelMapper'
+  	#Analytics
+    pod 'Intercom'
+    pod 'Mixpanel-swift'
+    
+    #Debug
+    pod 'Reveal-SDK', :configurations => ['Debug']
+
+    #Layout
+    pod 'PureLayout'
+    
+    #Model
+    pod 'Mantle'
+    pod 'KVOController'
+    
+    #Networking
+    pod 'AWSS3'
+    pod 'HIPNetworking', :git => 'https://github.com/Hipo/HIPNetworking.git'
+    pod 'Kingfisher', '~> 4.0'
+    
+    #View
+    pod 'ActiveLabel', :git => 'https://github.com/Hipo/ActiveLabel.swift.git', :branch => 'swift-4-migration'
+    pod 'CCHLinkTextView'
+    pod 'HIPImageCropper'
+    pod 'VENTokenField', :git => 'https://github.com/Hipo/VENTokenField.git'
+    pod 'PullToRefresher', :git => 'https://github.com/Hipo/PullToRefresh.git'
+    pod 'SZTextView'
+    
+    #Utilities
+    pod 'DeviceUtil'
+    pod 'SSKeychain'
+    pod 'PhoneNumberKit', '~> 2.1'
+    pod 'AnyFormatKit', :git => 'https://github.com/Hipo/AnyFormatKit'
+    
+    #Structure
+    pod 'IGListKit', '~> 3.0'
 end
 
 target 'Sample' do
-  # Pods for Sample
-  main_pods
+  	# Pods for Sample
+  	main_pods
 end
 
 target 'Sample-Preprod' do
-  # Pods for Sample-Preprod
-  main_pods
+  	# Pods for Sample-Preprod
+  	main_pods
+end
+
+target 'Sample-Staging' do
+  	# Pods for Sample-Staging
+  	main_pods
+
+  	pod 'Tryouts', :git => 'https://github.com/Hipo/Tryouts-iOS-SDK.git'
 end
 ```
 
@@ -123,9 +172,98 @@ end
 
 - **TARGET MANAGEMENT**
 
-  This section has not been written yet.
+  Generally we have 3 targets which are *Production, Pre-Production, Staging*. According backend, we should create targets for each environment.  
 
-  ​
+  For each target we have build flag like `-APPSTORE`, `-PREPROD`. If project has satellite apps, they should have custom flag.
+
+  To add a build flag, developer can add any build flag with opening a specific target's build settings and search "Preprocessor Macros" add build flag on necessary build configurations. 
+
+  To gather information about build flags on compile time, we created a `Environment.swift` file. 
+
+  	Sample **Environment.swift** 
+
+
+```
+//
+//  Environment.swift
+//  SampleApp
+//
+//  Created by Salih Karasuluoglu on 26.06.2018.
+//  Copyright © 2018 Hippo Foundry. All rights reserved.
+//
+import Foundation
+
+fileprivate enum AppTarget {
+    case staging, preprod, prod
+}
+
+// MARK: Environment
+@objc
+class Environment: NSObject {
+    
+    // MARK: Singleton
+    
+    private static let instance = Environment()
+    
+    // MARK: Variables
+    
+    @objc class var current: Environment {
+        return instance
+    }
+    
+    @objc lazy var serverHost: String = {
+        switch target {
+        case .staging:
+            return "https://staging.sampleapp.com"
+        case .preprod:
+            return "https://preprod.sampleapp.com"
+        case .prod:
+            return "https://sampleapp.com"
+        }
+    }()
+    
+    @objc lazy var serverApi: String = {
+        return "\(serverHost)/api"
+    }()
+    
+    @objc lazy var deeplinkScheme: String = {
+        switch target {
+        case .staging:
+            return "sampleappstaging"
+        case .preprod:
+            return "sampleapppreprod"
+        case .prod:
+            return "sampleapp"
+        }
+    }()
+    
+    @objc lazy var deeplinkHost: String = {
+        switch target {
+        case .staging:
+            return "staging.sampleapp.com"
+        case .preprod:
+            return "preprod.sampleapp.com"
+        case .prod:
+            return "sampleapp.com"
+        }
+    }()
+    
+    private let target: AppTarget
+    
+    // MARK: Initialization
+    
+    private override init() {
+        #if APPSTORE
+        target = .prod
+        #elseif PREPROD
+        target = .preprod
+        #else
+        target = .staging
+        #endif
+    }
+}
+```
+
 
 
 - **STYLEGUIDE**
@@ -140,7 +278,17 @@ end
 
 - **FILE STRUCTURE**
 
-  This section has not been written yet.
+  According to grouping files, they should be in right place in groups. 
+
+  In general, the order of file structure should be in proper;
+
+  1. Variables should be on top of methods
+  2. The order of variables should be like this;
+  	- Static variables
+  	- Public variables
+  	- Other variables
+  3. Public methods should be on other methods in class.
+  4. Delegate methods should be handled on a specific **extension**
 
 
 
