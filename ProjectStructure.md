@@ -9,7 +9,6 @@ This chapter outlines the directory structures and various other basic requireme
 Project structure is the first thing we should pay attention when starting a project. Generally, there are a few rules which every iOS team member should follow.
 
 
-
 - **GIT** 
 
   All projects in Hipo will be hosted in 'Github'. So, first thing we should do is to put a standard *.gitignore* file into the project. We do not push installed pods (CocoaPods) to git, therefore; do NOT forget to add the restriction into gitignore because, before, we had experienced that some pods might have too much size to be hosted in Github. Also, it would be nice to add a *README* file with general info about the project and how to setup development environment.
@@ -136,7 +135,6 @@ end
 ```
 
 
-
 - **GROUPING FILES**
 
   This is the one thing every iOS developer in Hipo must put effort. There are several groups which needs to be included in almost every project.
@@ -167,7 +165,6 @@ end
   Under feature levels, you do not have such grouping instructions, but it is encouraged to create new groups for every sensible concept. Additionally, you should sort all your groups and files by alphabetical order. These will make project structure more readable.
 
   Besides this grouping strategy, there are a few key points you should bear in mind. First. you should maintain a logical order by putting source files in groups. For example, if you create a view class for a view controller positioned under *Classes>ViewControllers>Profile*, the file should be put under *Classes>Views>Profile*. This way, all groups will be in sync by the same hierarchical order. And if you have a class which is used for multiple feature-set, then these files should be moved to 'Common' groups and their names should be changed if needed. Moreover, the group structure within both *XCode* and *filesystem* MUST be identical. It is a big plus for a well-organized project.
-
 
 
 - **TARGET MANAGEMENT**
@@ -275,7 +272,6 @@ struct Environment {
   - **Component-based**: To support the shared styling for the interface elements in the same containing component, but having different styling from the application-based and the related screen-based configurations.
 
 We are using a shared pod (currently in progress) for styling, and also the common UI code, which can be found in [https://github.com/Hipo/HIPUIKit-Sample]: here.
-
 
 
 - **FILE STRUCTURE**
