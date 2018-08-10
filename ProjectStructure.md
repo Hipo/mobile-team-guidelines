@@ -14,7 +14,7 @@ Project structure is the first thing we should pay attention when starting a pro
 
   All projects in Hipo will be hosted in 'Github'. So, first thing we should do is to put a standard *.gitignore* file into the project. We do not push installed pods (CocoaPods) to git, therefore; do NOT forget to add the restriction into gitignore because, before, we had experienced that some pods might have too much size to be hosted in Github. Also, it would be nice to add a *README* file with general info about the project and how to setup development environment.
 
-      Sample **.gitignore** 
+Sample **.gitignore** 
 
 ```
 # OS X temporary files that should never be committed
@@ -71,7 +71,7 @@ Pods/
 
   If there is an open-source library, you want to use in the project, you must add it as a pod unless there is a specific reason not to do. It would be nice to write it down to *README*. Also, if you want to add a pod, but it  does not meet all your requirements and you need to change the code, first you fork the project into Hipo repo, make your changes, then add ours into *podfile*. 
 
-​      Sample **Podfile** 
+Sample **Podfile** 
 
 ```
 platform :ios, '9.0'
@@ -168,50 +168,69 @@ end
 
   Besides this grouping strategy, there are a few key points you should bear in mind. First. you should maintain a logical order by putting source files in groups. For example, if you create a view class for a view controller positioned under *Classes>ViewControllers>Profile*, the file should be put under *Classes>Views>Profile*. This way, all groups will be in sync by the same hierarchical order. And if you have a class which is used for multiple feature-set, then these files should be moved to 'Common' groups and their names should be changed if needed. Moreover, the group structure within both *XCode* and *filesystem* MUST be identical. It is a big plus for a well-organized project.
 
-  ​
+
 
 - **TARGET MANAGEMENT**
 
-  Generally we have 3 targets which are *Production, Pre-Production, Staging*. According backend, we should create targets for each environment.  
+  Generally we have three targets which are *Production, Pre-Production, Staging*. According backend, we should create targets for each environment. 
 
-  For each target we have build flag like `-APPSTORE`, `-PREPROD`. If project has satellite apps, they should have custom flag.
+  You can then add swift compiler flags so that you can check the current configuration through code. To do that, goto _Target->Build Settings->Swift Compiler->Custom flags->Other Swift Flags_ section and edit the flags for different environments. Add the flags using the sytax, "-D{target_name}" like "-DAPPSTORE", "-DPREPROD", and "-DSTAGING". If you have satellite applications in the project, you can set the custom flags using the same method. 
 
-  To add a build flag, developer can add any build flag with opening a specific target's build settings and search "Preprocessor Macros" add build flag on necessary build configurations. 
+  To get the relevant configuration about build flags on compile time, you can use the `Environment.swift` file. 
 
-  To gather information about build flags on compile time, we created a `Environment.swift` file. 
-
-  	Sample **Environment.swift** 
-
+Sample **Environment.swift** 
 
 ```
-//
-//  Environment.swift
-//  SampleApp
-//
-//  Created by Salih Karasuluoglu on 26.06.2018.
-//  Copyright © 2018 Hippo Foundry. All rights reserved.
-//
 import Foundation
 
 fileprivate enum AppTarget {
     case staging, preprod, prod
 }
 
-// MARK: Environment
-@objc
-class Environment: NSObject {
+// MARK: Frameworks
+struct IntercomBundle {
+	// MARK: Variables
+    lazy var token: String = {
+       switch target {
+           case .staging, .preprod:
+           	   return "intercom_test_token"
+           case .prod:
+               return "intercom_prod_token"
+       } 
+    }()
     
+    private let target: AppTarget
+    
+    // MARK: Initialization
+    fileprivate init(target: AppTarget) {
+        self.target = target
+    }
+}
+
+struct FrameworkBundle {
+    // MARK: Variables
+    lazy var intercom: IntercomBundle = {
+        return IntercomBundle(target: target)
+    }()
+    
+    private let target: AppTarget
+    
+    // MARK: Initialization
+    fileprivate init(target: AppTarget) {
+        self.target = target
+    }
+}
+
+struct Environment {
     // MARK: Singleton
-    
     private static let instance = Environment()
     
     // MARK: Variables
-    
-    @objc class var current: Environment {
+    static var current: Environment {
         return instance
     }
     
-    @objc lazy var serverHost: String = {
+    lazy var serverHost: String = {
         switch target {
         case .staging:
             return "https://staging.sampleapp.com"
@@ -222,37 +241,18 @@ class Environment: NSObject {
         }
     }()
     
-    @objc lazy var serverApi: String = {
+    lazy var serverApi: String = {
         return "\(serverHost)/api"
     }()
     
-    @objc lazy var deeplinkScheme: String = {
-        switch target {
-        case .staging:
-            return "sampleappstaging"
-        case .preprod:
-            return "sampleapppreprod"
-        case .prod:
-            return "sampleapp"
-        }
-    }()
-    
-    @objc lazy var deeplinkHost: String = {
-        switch target {
-        case .staging:
-            return "staging.sampleapp.com"
-        case .preprod:
-            return "preprod.sampleapp.com"
-        case .prod:
-            return "sampleapp.com"
-        }
+    lazy var frameworks: FrameworkBundle = {
+        return FrameworkBundle(target: target)
     }()
     
     private let target: AppTarget
     
     // MARK: Initialization
-    
-    private override init() {
+    private init() {
         #if APPSTORE
         target = .prod
         #elseif PREPROD
@@ -265,30 +265,28 @@ class Environment: NSObject {
 ```
 
 
-
 - **STYLEGUIDE**
 
-  This section has not been written yet.
+  In Hipo, we do not use interface builder, except **Launch Screen**, to build the UI components. Since they are implemented in the code, it is an important job for us to design styling code in a well-organized way. 
+  The general rule we should consider is to use the three types of configuration, _application-based, screen-based_ and_ component-based styling_, for the respected properties. This will be especially helpful to standardize the code to be able to answer the requirements of the different projects, customers and designers.
+  
+  - **Application-based**: To support the shared styling for the same interface elements in the application.
+  - **Screen-based**: To support the shared styling for the interface elements in the same screen, but having different styling from the application-based configuration.
+  - **Component-based**: To support the shared styling for the interface elements in the same containing component, but having different styling from the application-based and the related screen-based configurations.
 
-  - **Layout**
-  - **Color**
-  - **Font**
+We are using a shared pod (currently in progress) for styling, and also the common UI code, which can be found in [https://github.com/Hipo/HIPUIKit-Sample]: here.
 
 
 
 - **FILE STRUCTURE**
 
-  According to grouping files, they should be in right place in groups. 
-
-  In general, the order of file structure should be in proper;
-
-  1. Variables should be on top of methods
-  2. The order of variables should be like this;
-  	- Static variables
-  	- Public variables
-  	- Other variables
-  3. Public methods should be on other methods in class.
-  4. Delegate methods should be handled on a specific **extension**
+  The developers can follow his/her own rules to the code structure; however, there are a few rules everyone should consider.
+  
+  - Whatever structure you choose, you must be consistent throughout the whole project. If you join an existing project, you should make an effort to keep it on. However, if you see a inconvenient rule, and want to change it, you should do it everywhere in the project before pushing it to master branch.
+  - You should fix the all issues generated by Swift linter as soon as possible. These rules are strict and decide by the whole team. Thus if you want to change any of them, you should first talk to the team, explain your reasons. For other issues, you can check 'Swift Style Guide' before you decide a rule or consult the other team members.
+  - Pragma marks and extensions are very helpful for the other team/project members to follow and understand the code/project; therefore, it is highly recommended to use them as much as possible.
+  
+  For a reference, you can also check the shared pod, which can be found in [https://github.com/Hipo/HIPUIKit-Sample]: here.
 
 
 
