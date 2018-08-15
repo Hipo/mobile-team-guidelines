@@ -80,8 +80,53 @@ This chapter outlines best practices to use for developing in iOS and Android.
 
 ## Android
 
-### Common libraries
+### Architectures
 
-#### - Networking - Parsing
-#### - Image Download
-#### - Dependecy Injection
+### Development Advices
+
+* Try not to use nested fragments in activities.
+* Do not put too much code in activities.
+* Code blocks that are used more than one activities should put into *Utility* classes.
+* Rules of code guidelines must be followed while writing the code. 
+  * [**[*Java*]** Code Guideline](https://github.com/ahmetmentes/android-guidelines)
+  * [**[*Kotlin*]** Code Guideline](https://android.github.io/kotlin-guides/style.html)
+* Simple values that needs to be persisted in application can be put into SharedPreferences.
+* It's a good idea to make custom view attributes changeable from XML file.
+* *Do not use* hardcoded strings in layout and put all strings to **strings.xml** file.
+* All colors must be declared in **colors.xml** file to use.
+* Strings that are declared in **strings.xml** should be not in all caps. If you need to use in all caps, use textAllCaps feature.
+* Repetitive usages of padding, margin and related attributes values must be put into dimen to change easily.
+* Putting all style related layout attributes is a good practice to use in repetitive views.
+* Passwords of signingConfigs should be put into **gradle.properties** file.
+* Use different package name for debug, pre-production builds and etc.
+* Avoid using too much nested layouts. (Nested Layouts are not performance-friendly) Using constraint layout in those situations may be useful.
+* Library usage should be minimal and essential ones for specific application must be used only.
+
+### Common libraries
+* **Networking**
+  * [OkHttp](http://square.github.io/okhttp/)
+  * [Retrofit](http://square.github.io/retrofit/)
+     * Converters
+       * [GsonConverter](https://github.com/square/retrofit/tree/master/retrofit-converters/gson)
+       * [JacksonConverter](https://github.com/square/retrofit/tree/master/retrofit-converters/jackson)
+* **Image Download**
+  * [Glide](https://github.com/bumptech/glide)
+* **Dependency Injection**
+  * [Dagger](https://github.com/google/dagger)
+  * [Koin](https://github.com/InsertKoinIO/koin)
+* **Maps**
+  * [Google Maps Utils](https://github.com/googlemaps/android-maps-utils)
+* **Image Zoom**
+  * [PhotoView](https://github.com/chrisbanes/PhotoView)
+* **Reactive Extension**
+  * [RxJava](https://github.com/ReactiveX/RxJava)
+* **Catching Memory Leaks**
+  * [LeakCanary](https://github.com/square/leakcanary)
+* **Advanced Video Player**
+  * [ExoPlayer](https://github.com/google/ExoPlayer)
+* **View Injection Library [*Java Only*]**
+  * [ButterKnife](http://jakewharton.github.io/butterknife/)
+* **Testing**
+  * [Mockito](https://site.mockito.org/)
+  * [Espresso](https://developer.android.com/training/testing/espresso/)
+  * [Robolectric](http://robolectric.org/)
