@@ -51,15 +51,23 @@ fi
 
 - Checkout master branch
 - Set version numbers in build.gradle. 
-- Commit your build number change with release message. Ex:"**Released 1.0.1b1**"
-- Add tag to your commit Ex: "**1.0.1b1**"
+- Commit your build number change with release message. Ex:"**Released 1.0.1-1**"
+- Add tag to your commit Ex: "**1.0.1-1**"
 - Push commit and tag at once. 
 - Jenkins will be triggered after you push this commit. It will send a release to tryouts. Tryouts will share release info at slack. 
 
 ####Naming conventions for release
 
-- Initial release: **1.0.0b1**
-- Test release: **1.0.0b13**
+- Initial release: **1.0.0-1**
+- Test release: **1.0.0-13**
 - Store relese: **1.0.0**
-- Multiple app release at once: **1.0.0b1-1.0.1b1**
+- Multiple app release at once: **1.0.0-1&1.0.1-1**
 - Git commit message: "**Released 1.0.1-1.0.2**"
+
+####Semantic Versioning
+MAJOR.MINOR.PATCH-BETA
+
+- MAJOR version when you make incompatible API changes,
+- MINOR version when you add functionality in a backwards-compatible manner, and
+- PATCH version when you make backwards-compatible bug fixes.
+- BETA version when you create inhouse release.
