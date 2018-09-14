@@ -289,25 +289,34 @@ We are using a shared pod (currently in progress) for styling, and also the comm
 
 ## Android
 
-### Package Structure
+### Project Structure
 
-File order is one of important thing to start the project. Files should be seperate groups which needs to be included in every project.
+Package structure plays a big role for project's readability and maintenance. Files should be in appropriate seperate groups to access easily.
 
-```
-core
-customviews
-features
-network
-models
-utils
-```
+Package structure must follow the structure in the image below. 
 
-Core package should includes base files. For example BaseActivity, BaseFragment, ProjectApplication etc. These files are basic and associate with almost whole of the project.
+![alt text](https://github.com/mobile-team-guidelines/blob/master/images/projectstructure.png "Project Structure Image")
 
-When you need to use one design feature more than one, you can create its customview. Thus, you can control same features from one place.
+BaseActivity and BaseFragment in core folder must be implemented by nearly all Activity and Fragments unless there's a special case. Base classes have basic functions such as injecting network, sharedpreferences, loading view. So, there's no need to write unnecessary codes to each class. If the method used in more than one class and related to activity or fragment functionality(if not util class can be used), It must be moved to base class.
 
-Features package can seperates subpackages screen feature to screen feature as login, signup, main. Subpackages should includes screen related file like its activity, fragment, adapter etc.
+If you use custom ui pieces more than one and it has special functionalities as feature, developers should create custom view to use it later when needed.
 
-Api setting files should be in network packages. Api responses can located in models package.
+Every different screen in the application must be folderized in feature folder. These folders can be named as login, signup, main. Every fragment, adapter related to same screen should be also in folder unless used in different pages.
 
-Lastly utils package should includes files that special to your project and needs to use frequently like getting current time, download file, cropping image etc. 
+Methods that are used more than one place must be in utils package if not in base classes. Utility classes must follow the naming convention as UiUtils, DateUtils. Utility classes can include functions such as getting current time or getting image url according to specific phone. (PrismUtils)our project and needs to use frequently like getting current time, download file, cropping image etc.
+
+Res folder also has specialized structure and can be shown like in the image below.
+
+![alt text](https://github.com/mobile-team-guidelines/blob/master/images/resfolderstructure.png "Res Structure Image")
+
+Like package structure, gradle files also have structure that should be followed to increase readability. Example of gradle files included in the project can be shown like in image below.  
+
+![alt text](https://github.com/mobile-team-guidelines/blob/master/images/gradlestructure.png "Gradle Structure Image")
+
+The example below is taken from the Chroma project which creates 5 different application from the same project. This gradle file called as signing.gradle and includes *keystore*, *keyalias*, *keypassword*, *storepassword* for each flavour in the project. These parameters must be different from each other for every different flavour.
+
+![alt text](https://github.com/mobile-team-guidelines/blob/master/images/signinggradle.png "Signing Gradle Image")
+
+Creating a gradle named versions.gradle is great idea to update dependencies or version of application from the single file. The structure of versions.gradle should look like image below.
+
+![alt text](https://github.com/mobile-team-guidelines/blob/master/images/versionsgradle.png "Versions Gradle Image")
