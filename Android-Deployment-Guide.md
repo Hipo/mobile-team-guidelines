@@ -61,8 +61,8 @@ fi
 - Initial release: **1.0.0-1**
 - Test release: **1.0.0-13**
 - Store relese: **1.0.0**
-- Multiple app release at once: **1.0.0-1&1.0.1-1**
-- Git commit message: "**Released 1.0.1-1.0.2**"
+- Multiple app release at once: **1.0.0-1** (Write only one of the app's version)
+- Git commit message: "**Released 1.0.0-1**"
 
 ####Semantic Versioning
 MAJOR.MINOR.PATCH-BETA
