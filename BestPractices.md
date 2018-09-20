@@ -84,9 +84,8 @@ This chapter outlines best practices to use for developing in iOS and Android.
 
 ### Development Advices
 
-* Try not to use nested fragments in activities.
 * Do not put too much code in activities.
-* Code blocks that are used more than one activities should put into *Utility* classes.
+* Code blocks that are used more than one activities should put into *Utility* class or *Base* classes.
 * Rules of code guidelines must be followed while writing the code. 
   * [**[*Java*]** Code Guideline](https://github.com/ahmetmentes/android-guidelines)
   * [**[*Kotlin*]** Code Guideline](https://android.github.io/kotlin-guides/style.html)
@@ -94,13 +93,14 @@ This chapter outlines best practices to use for developing in iOS and Android.
 * It's a good idea to make custom view attributes changeable from XML file.
 * *Do not use* hardcoded strings in layout and put all strings to **strings.xml** file.
 * All colors must be declared in **colors.xml** file to use.
-* Strings that are declared in **strings.xml** should be not in all caps. If you need to use in all caps, use textAllCaps feature.
+* If the exact same text has **more than one** version with different caps try to use **textAllCaps** to reduce the number of defined strings
 * Repetitive usages of padding, margin and related attributes values must be put into dimen to change easily.
 * Putting all style related layout attributes is a good practice to use in repetitive views.
 * Passwords of signingConfigs should be put into **gradle.properties** file.
 * Use different package name for debug, pre-production builds and etc.
 * Avoid using too much nested layouts. (Nested Layouts are not performance-friendly) Using constraint layout in those situations may be useful.
 * Library usage should be minimal and essential ones for specific application must be used only.
+* You can insert sample data in your layout preview by using the **tools:** prefix instead of android: with any <View> attribute from the Android framework. This is useful when the attribute's value isn't populated until runtime but you want to see the effect beforehand, in the layout preview. Building removes these attributes so there is no effect on your APK size or runtime behavior.
 
 ### Common libraries
 * **Networking**
