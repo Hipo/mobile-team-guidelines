@@ -3,7 +3,9 @@
 
 ### :eye: Overview
 
-There are three Github action workflows that are integrated to our projects. One of them provides a build check after push. It's called as **Commit Check**. Second one is responsible for deploying app to Google Play Internal App Distribution Channel. This workflow is called as **Deploy To Firebase** and works after pushing tags with (-) in it (For example 1.0.1-3) to any branch. Third one is responsible for generating App Bundle for deploying to Google Play Store. This workflow is called as **Deploy Store Release** and works after pushing tags without dash (-) in it (For example 1.0.1) to any branch.
+There are three Bitrise workflows that are integrated to our projects. One of them provides a build check after push. It's called as **Commit Check**. Second one is responsible for deploying app to Google Play Internal App Distribution Channel. This workflow is called as **Deploy To Firebase** and works after pushing tags with (-) in it (For example 1.0.1-3) to any branch. Third one is responsible for generating App Bundle and send it to Slack channel. This workflow is called as **Deploy Store Release** and works after pushing tags without dash (-) in it (For example 1.0.1) to any branch.
+
+[Yml Generator](https://yml-generator.netlify.app/) can be used to create .yml easily
 
 ## :rocket: Creating Project
 To create a project, account needs to be part of Hipo organisation. Otherwise Hipo will not be found under accounts section. If you can not see Hipo, ask Taylan abi to send invitation to that account. 
